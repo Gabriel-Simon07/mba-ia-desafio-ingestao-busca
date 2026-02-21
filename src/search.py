@@ -144,7 +144,7 @@ class RAGSearch:
     # ------------------------------------------------------
     # BUSCA
     # ------------------------------------------------------
-    def search_documents(self, query: str, k: int = 5) -> List[Dict]:
+    def search_documents(self, query: str, k: int = 10) -> List[Dict]:
         try:
             results = self.vectorstore.similarity_search_with_score(query, k=k)
 
@@ -165,8 +165,8 @@ class RAGSearch:
     # ------------------------------------------------------
     # GERA RESPOSTA
     # ------------------------------------------------------
-    def generate_answer(self, query: str) -> str:
-        documents = self.search_documents(query, k=5)
+    def generate_answer(self, query: str, k: int = 10) -> str:
+        documents = self.search_documents(query, k=k)
 
         if not documents:
             return "Não tenho informações necessárias para responder sua pergunta."
